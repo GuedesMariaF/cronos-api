@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Auth;
+use App\Http\Controllers\Auth\SocialAuth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::group([], function () {
     Route::post("/login", [Auth::class, "login"]);
     Route::post("/refresh-token", [Auth::class, "refreshToken"]);
+
+    Route::get("/google", [SocialAuth::class, "redirectToGoogle"]);
+    Route::get("/google/callback", [SocialAuth::class, "handleGoogleCallback"]);
 });
 
 Route::middleware(['auth.api'])->group(function () {
